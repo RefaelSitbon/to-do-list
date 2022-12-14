@@ -25,7 +25,7 @@ export default (props) => {
             {
                 id: id,
                 task:input,
-                completed:false,
+                completed:"false",
             }
         ]);
         setInput('');
