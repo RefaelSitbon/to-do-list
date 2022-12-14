@@ -14,13 +14,13 @@ const rotate = keyframes`
 
 const Rotate = styled.div`
   display: inline-block;
-  animation: ${rotate} 2s linear infinite;
+  animation: ${rotate} 4s linear infinite;
   padding: 2rem 1rem;
   font-size: 1.2rem;
 `;
 
 export default () => {
     return (
-        <Rotate>&lt; <img src='./public/logo512.png'/> &gt;</Rotate>
+        <Rotate><img src='/logo192.png' alt="Where is my img??" height={40} width={40}/></Rotate>
     )
 }

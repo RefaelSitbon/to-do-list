@@ -4,6 +4,7 @@ import Header from './header'
 import Instruction from './instruction'
 import InputTask from './inputTask'
 import TopBar from './topBar';
+import TasksTable from './tasksTable';
 import './index.css';
 import styled, { ThemeProvider } from 'styled-components'
 
@@ -27,12 +28,17 @@ const lightTheme = {
 }
 
 function Main() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const isDarkTheme = theme === "dark";
 
   const toggleTheme = () => {
     setTheme(isDarkTheme ? 'light' : 'dark');
   }
+
+  const [input, setInput] = useState('');
+  const [tasks, setTasks] = useState([]);
+  const [countTasks, setCountTasks] = useState(0);
+  
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
@@ -40,7 +46,8 @@ function Main() {
         <Header />
         <Instruction />
         <TopBar toggleTheme={toggleTheme} />
-        <InputTask />
+        <InputTask tasks={tasks} setTasks={setTasks} input={input} setInput={setInput}/>
+        <TasksTable tasks={tasks} />
       </StyledPage>
     </ThemeProvider>
   )
