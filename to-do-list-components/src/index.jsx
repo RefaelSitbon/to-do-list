@@ -4,7 +4,7 @@ import Header from './header'
 import Instruction from './instruction'
 import InputTask from './inputTask'
 import TopBar from './topBar';
-import TasksTable from './tasksTable';
+import TableBar from './tableBar';
 import './index.css';
 import styled, { ThemeProvider } from 'styled-components'
 
@@ -24,7 +24,7 @@ const darkTheme = {
 const lightTheme = {
   body: "#fff",
   title: "#1c1c1c",
-  subtitle: "#b6b6b6",
+  subtitle: "#1c1c1c",
 }
 
 function Main() {
@@ -47,7 +47,7 @@ function Main() {
         <Instruction />
         <TopBar toggleTheme={toggleTheme} />
         <InputTask tasks={tasks} setTasks={setTasks} input={input} setInput={setInput}/>
-        <TasksTable tasks={tasks} />
+        <TableBar tasks={tasks} setTasks={setTasks} />
       </StyledPage>
     </ThemeProvider>
   )

@@ -1,20 +1,34 @@
 import React from "react";
+import styled from "styled-components";
+import DeleteTask from "./deleteTask";
 
-export default (tasks) => {
+const TableStyle = styled.table`
+justifyContent: lefts;
+alignItems: left;
+display: flex;
+color: ${(props) => props.theme.subtitle};
+`
+
+export default (props) => {
+    const { tasks, setTasks } = props;
+
     return (
-        <div>
+        <div >
             {
-            tasks.tasks.map((task, index) => {
-                return (
-                    <div
-                        key={index}
-                        completed={task.completed}
-                        id={task.id}
-                    >
-                        {task.task}
-                    </div>
-                );
-            })}
+                props.tasks.map((task, index) => {
+                    return (
+                        <ol>
+                            <TableStyle
+                                key={index}
+                                completed={task.completed}
+                                id={task.id}
+                            >
+                                    {(index + 1) + ":   "}&nbsp;
+                                    {task.task}
+                            </TableStyle>
+                        </ol>
+                    );
+                })}
         </div>
     );
 }
