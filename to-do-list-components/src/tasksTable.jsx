@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import DeleteTask from "./deleteTask";
 
-const TableStyle = styled.table`
+const TableStyle = styled.li`
 justifyContent: lefts;
 alignItems: left;
 display: flex;
@@ -17,9 +17,8 @@ export default (props) => {
             {
                 props.tasks.map((task, index) => {
                     return (
-                        <ol>
+                        <ol key={index}>
                             <TableStyle
-                                key={index}
                                 completed={task.completed}
                                 id={task.id}
                             >

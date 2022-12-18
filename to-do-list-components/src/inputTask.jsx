@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
+import axios from 'axios';
 
 const InputStyled = styled.input`
 padding: 1% 35%;
@@ -24,7 +25,7 @@ border-radius: 15px;
 export default (props) => {
     const { tasks, setTasks, input, setInput } = props;
 
-    const handleClick = () => {
+    const handleClick = (e) => {
         if (input !== "") {
             const id = tasks.length + 1;
 
@@ -36,6 +37,31 @@ export default (props) => {
                     completed: "false",
                 }
             ]);
+            // setInput('');
+
+            e.preventDefault();
+
+            // axios.get('http://localhost:3001/list/').then( res => {
+                // const task = res.data;
+                // setTasks(prev => [
+                //     ...prev,
+                //     {
+                //         id: id + 200,
+                //         task: "WTF????",
+                //         completed: 'false',
+                //     }
+                // ]);
+                // console.log(task);
+            // })
+            axios.post('http://localhost:3001/list/', 
+            { 
+                index: id,
+                task: input, 
+                completed: "false",
+            }).then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
             setInput('');
         }
     };
@@ -46,7 +72,7 @@ export default (props) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
-            <ButtonStyled onClick={() => handleClick()}>Add Task</ButtonStyled>
+            <ButtonStyled onClick={(e) => handleClick(e)}>Add Task</ButtonStyled>
         </div>
     )
 };

@@ -6,7 +6,8 @@ import InputTask from './inputTask'
 import TopBar from './topBar';
 import TableBar from './tableBar';
 import './index.css';
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components';
+
 
 const StyledPage = styled.div`
 min-height: 100vh;
@@ -37,7 +38,6 @@ function Main() {
 
   const [input, setInput] = useState('');
   const [tasks, setTasks] = useState([]);
-  const [countTasks, setCountTasks] = useState(0);
   
 
   return (
@@ -58,6 +58,3 @@ root.render(
   <Main />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
