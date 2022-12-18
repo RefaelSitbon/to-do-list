@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
 const DeleteTask = styled.button`
 display: inline-block;
@@ -20,6 +21,10 @@ export default (props) => {
         const array = [...tasks];
         array.splice(index, 1);
         setTasks(array);
+
+        axios.delete(`http://localhost:3001/list/`).then(res => {
+            console.log(res);
+        })
     }
 
     return (
@@ -27,7 +32,7 @@ export default (props) => {
             {
                 tasks.map((task, index) => {
                     return (
-                        <DeleteTask key={index} onClick={() => handleDelete(index)}>Delete</DeleteTask>
+                        <DeleteTask key={index} onClick={() => handleDelete(task._id)}>Delete</DeleteTask>
                     );
                 })
             }

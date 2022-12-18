@@ -37,31 +37,18 @@ export default (props) => {
                     completed: "false",
                 }
             ]);
-            // setInput('');
 
             e.preventDefault();
 
-            // axios.get('http://localhost:3001/list/').then( res => {
-                // const task = res.data;
-                // setTasks(prev => [
-                //     ...prev,
-                //     {
-                //         id: id + 200,
-                //         task: "WTF????",
-                //         completed: 'false',
-                //     }
-                // ]);
-                // console.log(task);
-            // })
-            axios.post('http://localhost:3001/list/', 
-            { 
-                index: id,
-                task: input, 
-                completed: "false",
-            }).then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
+            axios.post('http://localhost:3001/list/',
+                {
+                    index: id,
+                    task: input,
+                    completed: "false",
+                }).then(res => {
+                    console.log(res.status);
+                    // console.log(res.data);
+                })
             setInput('');
         }
     };
