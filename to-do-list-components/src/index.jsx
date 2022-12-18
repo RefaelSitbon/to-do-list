@@ -47,7 +47,7 @@ function Main() {
         <Instruction />
         <TopBar toggleTheme={toggleTheme} />
         <InputTask tasks={tasks} setTasks={setTasks} input={input} setInput={setInput}/>
-        <TableBar tasks={tasks} setTasks={setTasks} />
+        <TableBar tasks={tasks} setTasks={setTasks} input={input} setInput={setInput} />
       </StyledPage>
     </ThemeProvider>
   )

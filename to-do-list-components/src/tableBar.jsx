@@ -1,6 +1,7 @@
 import React from "react";
 import TasksTable from "./tasksTable";
 import DeleteTask from "./deleteTask";
+import UpdateTask from "./updateTask";
 import styled from "styled-components";
 
 const TableBarStyled = styled.div`
@@ -14,6 +15,7 @@ export default (props) => {
     return(
         <div style={{display: "flex", alignItems: "center", justifyContent:"left"}} >
             <DeleteTask tasks={props.tasks} setTasks={props.setTasks}/>
+            <UpdateTask tasks={props.tasks} setTasks={props.setTasks} input={props.input} setInput={props.setInput} />
             <TasksTable tasks={props.tasks} setTasks={props.setTasks}/>
         </div>
     )

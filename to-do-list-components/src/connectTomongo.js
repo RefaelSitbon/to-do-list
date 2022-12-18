@@ -31,16 +31,21 @@ app.get('/list', async (req, res) => {
 
 });
 
-app.post('/list', (req, res) => {
-  Todo.create(req.body, (error, result) => {
+app.post('/list', async(req, res) => {
+  await Todo.create(req.body, (error, result) => {
     if(error){ res.send(error); }
     else{ res.send(result); }
   });
 });
 
-app.delete(`/list`, async(req, res) => {
-  await Todo.findByIdAndDelete(req.body.index);
-  res.send("Remove successed");
+app.delete(`/list/:id`, async(req, res) => {
+  await Todo.findByIdAndDelete(req.params.id);
+  res.send("Deleted Successed");
+});
+
+app.put('/list/:id', async(req, res) => {
+  console.log(req.body);
+  await Todo.findByIdAndUpdate(req.params.id, req.body)
 });
 
 app.listen(3001, () => console.log('Server listening on port 3001'));

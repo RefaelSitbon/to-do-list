@@ -22,8 +22,8 @@ export default (props) => {
         array.splice(index, 1);
         setTasks(array);
 
-        axios.delete(`http://localhost:3001/list/`).then(res => {
-            console.log(res);
+        axios.delete(`http://localhost:3001/list/${index}`).then(res => {
+            console.log(res.status);
         })
     }
 
