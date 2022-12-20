@@ -29,14 +29,14 @@ export default (props) => {
         if (input !== "") {
             const id = tasks.length + 1;
 
-            setTasks(prev => [
-                ...prev,
-                {
-                    id: id,
-                    task: input,
-                    completed: "false",
-                }
-            ]);
+            // setTasks(prev => [
+            //     ...prev,
+            //     {
+            //         id: id,
+            //         task: input,
+            //         completed: "false",
+            //     }
+            // ]);
 
             e.preventDefault();
 

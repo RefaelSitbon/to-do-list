@@ -44,8 +44,10 @@ app.delete(`/list/:id`, async(req, res) => {
 });
 
 app.put('/list/:id', async(req, res) => {
+  console.log("Make changes in: " + req.params.id);
   console.log(req.body);
-  await Todo.findByIdAndUpdate(req.params.id, req.body)
+  await Todo.findByIdAndUpdate(req.params.id, req.body).then(
+  console.log("done with: " + req.params.id))
 });
 
 app.listen(3001, () => console.log('Server listening on port 3001'));

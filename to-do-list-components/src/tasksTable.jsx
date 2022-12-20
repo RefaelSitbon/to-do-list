@@ -1,20 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
+import TableRow from "./tableRow";
 
-const TableStyle = styled.input`
-justifyContent: lefts;
-alignItems: left;
-padding: 0.7em 015.1em;
-
-display: flex;
-color: white;
-background: ${(props) => props.theme.subtitle};
-`
 
 export default (props) => {
-    const { tasks, setTasks, isDisable, setIsDisable, update, setUpdate } = props;
-    const [value, setValue] = useState(tasks);
+    const { tasks, setTasks, isDisable, setIsDisable, change, setChange } = props;
 
     axios.get('http://localhost:3001/list/').then(res => {
         const tasksArray = res.data;
@@ -28,12 +19,9 @@ export default (props) => {
                 tasks.map((task, index) => {
                     return (
                         <div key={index}>
-                            <TableStyle
-                            type="text"
-                            value={ task.task}
-                            onChange={e => setUpdate(e.target.value)}
-                            disabled={!isDisable}
-                            />
+                            <TableRow task={task} index={index} isDisable={isDisable} setIsDisable={setIsDisable}
+                            tasks={tasks} setTasks={setTasks} change={change} setChange={setChange} />
+                            
                                 {/* {(index + 1) + ":   "}&nbsp; */}
                                 {/* {task.task} */}
                                 {/* {". complete? " + task.completed} */}

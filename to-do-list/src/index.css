@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.padding{
+  height: 100pt;
+
+}
+.inputForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10%;
+  text-decoration-color: aliceblue;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.taskList{
+  /* display: flex; */
+  justify-content: left;
+  /* text-align: center; */
+  /* padding: 5%; */
+  /* -ms-grid-column-align:center; */
+  /* justify-content:space-between; */
+  /* -ms-grid-column-align:start; */
+  position:fixed;
+  left: 25%;
+  height:0;
+
+}
+
+.deleteMission {
+  /* justify-content:left; */
+  /* position:relative; */
+  height: 35px;
+  /* right: -300%; */
+  padding-left: 150%;
+  /* align-content:space-between; */
+
+
+
+}
+
+body {
+  background-color: rgb(34, 29, 29);
 }

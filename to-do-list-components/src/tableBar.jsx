@@ -13,17 +13,17 @@ alignItems: center;
 
 export default (props) => {
     const [isDisable, setIsDisable] = useState(false);
-    const [update, setUpdate] = useState('');
+    const [change, setChange] = useState('');
 
     return(
         <div style={{display: "flex", alignItems: "center", justifyContent:"left"}} >
             <DeleteTask tasks={props.tasks} setTasks={props.setTasks}/>
             <UpdateTask tasks={props.tasks} setTasks={props.setTasks} 
-            isDisable={isDisable} setIsDisable={setIsDisable} 
-            update={update} setUpdate={setUpdate} />
+            isDisable={isDisable} setIsDisable={setIsDisable} change={change} setChange={setChange}
+             />
             <TasksTable tasks={props.tasks} setTasks={props.setTasks} 
-            isDisable={isDisable} setIsDisable={setIsDisable} 
-            update={update} setUpdate={setUpdate} />
+            isDisable={isDisable} setIsDisable={setIsDisable} change={change} setChange={setChange}
+             />
         </div>
     )
 }

@@ -18,6 +18,7 @@ export default (props) => {
     const { tasks, setTasks } = props;
 
     const handleDelete = (index) => {
+        console.log(index);
         const array = [...tasks];
         array.splice(index, 1);
         setTasks(array);

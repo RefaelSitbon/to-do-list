@@ -22,24 +22,29 @@ border-radius: 3%;
 padding-left:30%;
 `;
 
+
 export default (props) => {
-    const { tasks, setTasks, input, setInput, isDisable, setIsDisable, update, setUpdate } = props;
-    const [visible, setVisible] = useState(false);
+    const { tasks, setTasks, isDisable, setIsDisable, change, setChange } = props;
 
     const handleUpdate = (index, id) => {
+
         setIsDisable(!isDisable);
+        if (isDisable === true) {
+            const array = [...tasks];
+            array[index].task = change;
+            setChange('');
 
-        // setVisible(!visible);
-        const task = tasks[index];
-        // task.task = update;
-        // // setUpdate('');
-        // setTasks(tasks);
-        console.log(task.task)
+            setTasks(array)
+            console.log(index + " In Update side")
+            const task = tasks[index].task;
+            console.log(task);
 
-        axios.put(`http://localhost:3001/list/${id}`,
-            {
-                task: task.task,
-            })
+
+            axios.put(`http://localhost:3001/list/${id}`,
+                {
+                    task: task,
+                }).then(console.log(tasks[index].task + " updated in Monogo")).catch(err => console.log("ERROR!!! " + err))
+        }
     }
 
     return (
