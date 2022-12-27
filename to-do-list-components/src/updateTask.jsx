@@ -32,7 +32,7 @@ export default (props) => {
         if (isDisable === true) {
             const array = [...tasks];
             array[index].task = change;
-            setChange('');
+            // setChange('');
 
             setTasks(array)
             console.log(index + " In Update side")

@@ -8,6 +8,9 @@ import TableBar from './tableBar';
 import './index.css';
 import styled, { ThemeProvider } from 'styled-components';
 
+import axios from 'axios';
+
+
 
 const StyledPage = styled.div`
 min-height: 100vh;
@@ -38,7 +41,16 @@ function Main() {
 
   const [input, setInput] = useState('');
   const [tasks, setTasks] = useState([]);
-  
+
+  const updateTasks = () => {
+    axios.get('http://localhost:3001/list/').then(res => {
+      const tasksArray = res.data;
+
+      setTasks(tasksArray);
+    });
+  }
+
+  updateTasks();
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
@@ -46,8 +58,8 @@ function Main() {
         <Header />
         <Instruction />
         <TopBar toggleTheme={toggleTheme} />
-        <InputTask tasks={tasks} setTasks={setTasks} input={input} setInput={setInput}/>
-        <TableBar tasks={tasks} setTasks={setTasks} input={input} setInput={setInput} />
+        <InputTask tasks={tasks} setTasks={setTasks} input={input} setInput={setInput} />
+        <TableBar tasks={tasks} setTasks={setTasks} updateTasks={updateTasks}/>
       </StyledPage>
     </ThemeProvider>
   )

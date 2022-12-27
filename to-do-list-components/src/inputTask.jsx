@@ -29,15 +29,6 @@ export default (props) => {
         if (input !== "") {
             const id = tasks.length + 1;
 
-            // setTasks(prev => [
-            //     ...prev,
-            //     {
-            //         id: id,
-            //         task: input,
-            //         completed: "false",
-            //     }
-            // ]);
-
             e.preventDefault();
 
             axios.post('http://localhost:3001/list/',
@@ -47,7 +38,6 @@ export default (props) => {
                     completed: "false",
                 }).then(res => {
                     console.log(res.status);
-                    // console.log(res.data);
                 })
             setInput('');
         }

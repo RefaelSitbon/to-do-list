@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
 
@@ -15,16 +15,33 @@ border-radius: 5px;
   `;
 
 export default (props) => {
-    const { tasks, setTasks } = props;
+    const { tasks, setTasks, updateTasks } = props;
+    let temp = [...tasks];
 
-    const handleDelete = (index) => {
-        console.log(index);
-        const array = [...tasks];
-        array.splice(index, 1);
-        setTasks(array);
+    const handleDelete = (id, index, task) => {
+        // console.log(tasks)
+        // console.log(temp)
+        // const array = tasks.filter((tas) => tas._id !== id);
+        // array.splice(index, 1);
+        // // temp = [...array];
+        // setTasks(array);
 
-        axios.delete(`http://localhost:3001/list/${index}`).then(res => {
+        // console.log(array);
+        console.log(task.task);
+
+        axios.delete(`http://localhost:3001/list/${id}`).then(res => {
             console.log(res.status);
+            const array = [...tasks];
+            array.splice(index , 1);
+            
+            // console.log(" before setTasks");
+            // console.log(tasks);
+            setTasks(array);
+
+            // console.log(array)
+            // console.log(tasks)
+
+            console.log(index + " index !!!!!!")
         })
     }
 
@@ -33,7 +50,7 @@ export default (props) => {
             {
                 tasks.map((task, index) => {
                     return (
-                        <DeleteTask key={index} onClick={() => handleDelete(task._id)}>Delete</DeleteTask>
+                        <DeleteTask key={index} onClick={() => handleDelete(task._id, index, task)}>Delete</DeleteTask>
                     );
                 })
             }

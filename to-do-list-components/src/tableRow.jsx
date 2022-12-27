@@ -17,6 +17,8 @@ export default (props) => {
     const { task, index, isDisable, setIsDisable, tasks, setTasks, change, setChange} = props;
     const [value, setValue] = useState(task.task);
 
+
+    
     const handleChange = (e) => {
         console.log("HEREEEEEE")
         setValue(e.target.value);
