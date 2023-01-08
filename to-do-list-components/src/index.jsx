@@ -46,6 +46,7 @@ function Main() {
     axios.get('http://localhost:3001/list/').then(res => {
       const tasksArray = res.data;
 
+      // this line make the DOM render the Main component infinit
       setTasks(tasksArray);
     });
   }

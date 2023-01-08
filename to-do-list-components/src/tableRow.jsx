@@ -20,7 +20,6 @@ export default (props) => {
 
     
     const handleChange = (e) => {
-        console.log("HEREEEEEE")
         setValue(e.target.value);
         setChange(value);
         
