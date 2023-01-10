@@ -25,7 +25,7 @@ app.use(cors(corsOptions));
 mongoose.connect(url);  
 
 app.get('/list', async (req, res) => {
-  const todoList = await Todo.find({}).exec();
+  const todoList = await Todo.find({});
   res.send(todoList);
   // res.send('<!DOCTYPE html><html style="color:red"><h1>Hell World</h1></html>')
 

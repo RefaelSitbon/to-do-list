@@ -2,17 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
 
-const DeleteTask = styled.button`
-display: inline-block;
-display: flex;
-font-size: 0.8rem;
-color: red;
-background-color: ${(props) => props.theme.body};
-margin: 0.5em;
-padding: 0.5em 0.1em;
-border: 2px solid white;
-border-radius: 5px;
-  `;
+const DeleteTask = styled.button
+`
+margin: 1% 1% 1% 1%;
+padding: 1% 1% 1% 1%;
+display: block;
+`
+// `
+// display: inline-block;
+// display: flex;
+// font-size: 0.8rem;
+// color: red;
+// background-color: ${(props) => props.theme.body};
+// margin: 0.5em;
+// padding: 0.5em 0.1em;
+// border: 2px solid white;
+// border-radius: 5px;
+//   `;
 
 export default (props) => {
     const { tasks, setTasks, updateTasks } = props;

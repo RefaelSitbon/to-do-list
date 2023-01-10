@@ -2,25 +2,27 @@ import React from "react";
 import styled from 'styled-components'
 import axios from 'axios';
 
-const InputStyled = styled.input`
-padding: 1% 35%;
-margin: 7px;
-background: silver;
-border: none;
-border-radius: 3%;
-align-items: center;
-display: flex;
-padding-left:50%;
-`;
+const InputStyled = styled.input``
+// `
+// padding: 1% 35%;
+// margin: 7px;
+// background: silver;
+// border: none;
+// border-radius: 3%;
+// align-items: center;
+// display: flex;
+// padding-left:50%;
+// `;
 
-const ButtonStyled = styled.button`
-color: ${(props) => props.theme.title};
-font-size: 1em;
-margin: 0.5em;
-padding: 0.5em 1em;
-border: 2px solid ${(props) => props.theme.title};
-border-radius: 15px;
-`;
+const ButtonStyled = styled.button``
+// `
+// color: ${(props) => props.theme.title};
+// font-size: 1em;
+// margin: 0.5em;
+// padding: 0.5em 1em;
+// border: 2px solid ${(props) => props.theme.title};
+// border-radius: 15px;
+// `;
 
 export default (props) => {
     const { tasks, setTasks, input, setInput } = props;
@@ -39,12 +41,16 @@ export default (props) => {
                 }).then(res => {
                     console.log(res.status);
                 })
-            setInput('');
+                
+                console.log(input + "INPUUUUTTTT")
+                const temp_tasks = [...tasks, input];
+                setTasks(temp_tasks);
+                setInput('');
         }
     };
     return (
         <div>
-            <InputStyled
+            <InputStyled className="input"
                 placeholder="Input your new task"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

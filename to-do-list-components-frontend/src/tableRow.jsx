@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
 
-const TableStyle = styled.input`
-justifyContent: left;
-alignItems: left;
-padding: 0.7em 25.1em;
+const TableStyle = styled.input
+`
+padding: 1% 42% 1% 2%;
+margin: -1% 1% 1% 1%;
+`
+// `
+// justifyContent: left;
+// alignItems: left;
+// padding: 0.7em 25.1em;
 
-display: flex;
-color: white;
-background: ${(props) => props.theme.subtitle};
-`;
+// display: flex;
+// color: white;
+// background: ${(props) => props.theme.subtitle};
+// `;
 
 
 export default (props) => {

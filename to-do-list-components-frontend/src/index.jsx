@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './header'
 import Instruction from './instruction'
@@ -43,16 +43,18 @@ function Main() {
   const [tasks, setTasks] = useState([]);
 
   const updateTasks = () => {
-    axios.get('http://localhost:3001/list/').then(res => {
-      const tasksArray = res.data;
+    axios.get('http://localhost:3001/list').then(({data}) => {
+      const tasksArray = data;
 
       // this line make the DOM render the Main component infinit
       setTasks(tasksArray);
     });
   }
 
-  updateTasks();
-
+  useEffect(() => {
+    updateTasks()
+  }, []);
+  
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <StyledPage>
