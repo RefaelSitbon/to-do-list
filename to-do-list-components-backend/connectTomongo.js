@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
+import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config();
+
 
 import jwt from 'jsonwebtoken';
 // const jwt = require('jsonwebtoken');
@@ -62,42 +65,50 @@ app.put('/list/:id', async (req, res) => {
 
 app.get('/register', async (req, res) => {
   console.log("try to register");
-  const registersList = await Register.find({});
-  res.send(registersList);
+  const email = req.query.email;
+  const password = req.query.password;
+  console.log(email + " " + password)
+  const registersList = await Register.find({ email: email });
+  if (registersList.length === 0) {
+    console.log(">?>?>?")
+    res.send("EnterNewUser");
+  }
+  if (registersList[0]) {
+    const exist = bcrypt.compareSync(password, registersList[0].password)
+    console.log(exist)
+    if (exist) {
+      res.send("Success")
+    }
+  }
 });
 
 app.post('/register', async (req, res) => {
   console.log("POST");
   console.log(req.body.email);
+  try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const newUser = { email: req.body.email, password: hashedPassword }
 
-  // const user = { email: req.body.email };
-  // console.log(1)
-  // const accessToken = jwt.sign(user, 'astdgsadhreag');
-  // console.log(accessToken);
-  // sessionStorage.setItem('token', JSON.stringify(accessToken));
-  // console.log(3);
-  // res.json({ accessToken: accessToken });
-
-  // try {
-  //   const salt = await bcrypt.genSalt();
-  //   const hashedPassword = await bcrypt.hash(req.body.password, salt);
-  //   console.log("SALT " + salt);
-  //   console.log("PASSWORD " + req.body.password);
-  //   console.log("HashedPassword " + hashedPassword);
-
-  // }catch(err){
-  //   res.send(err);
-  // }
-  await Register.create({email: req.body.email, password: req.body.password}, (error, result) => {
-    if (error) { res.send(error) }
-    else { res.send(result) }
-  });
-  // console.log(1)
-  // const token = jwt.sign({id: req.body.email}, process.env.SECRET, {expiresIn: 86400});
-  // console.log(2)
-
-
-  // res.send({auth: true, token: token});
+    Register.create(newUser, (error,) => {
+      if (error) {
+        res.send(error)
+      } else {
+        res.send(hashedPassword);
+      }
+    });
+  } catch (err) { res.send(err); }
+});
+app.get('/register/existed', async (req, res) => {
+  const { email, password } = req.query;
+  console.log(email);
+  const mail = await Register.find({ email: email })
+  console.log("MAIL " + mail[0].password)
+  if (bcrypt.compareSync(password, mail[0].password)) {
+    res.send(mail[0].password);
+  } else {
+    res.send("wrong password");
+  }
 });
 
 app.get('/register/exist', async (req, res) => {

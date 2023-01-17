@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import SecoundPage from './secoundPage';
 
-
-
 const DivStyled = styled.div
     `
     margin: 0% 0% 0% 0%;
@@ -61,24 +59,21 @@ export default () => {
         }
         else {
             console.log(inputMail + " CHECK!!");
-            axios.get(url).then(({ data }) => {
-                let bool = false;
-                console.log(data);
-                for (let i = 0; i < data.length; ++i) {
-                    const array = JSON.stringify(data[i]);
-                    if (array.indexOf(inputMail) > -1) {
-                        if (array.indexOf(inputNumber) > -1) {
-                            bool = true;
-                        }
-                    }
-                }
-                if (bool === false) {
+            axios.get(url, { params: { email: inputMail, password: inputNumber } }).then(({ data }) => {
+                if (data === "EnterNewUser") {
                     axios.post(url, {
                         email: inputMail,
                         password: inputNumber,
-                    }).then(
-                        console.log("Hello new member")
+                    }).then(({data}) => {
+                        console.log("Hello new member");
+                        sessionStorage.setItem('token', JSON.stringify(data));
+                        console.log("After storage " + data)
+                    }
                     );
+                }else if(data === "Success"){
+                    console.log(data + " FROM FRONT");
+                }else{
+                    console.log(data + " FROM FRONT");
                 }
             });
         }
@@ -86,13 +81,14 @@ export default () => {
 
     const handleLogIn = () => {
         setShowComponent(false);
-        axios.get(url).then(({ data }) => {
-            for (let i = 0; i < data.length; ++i) {
-                const array = JSON.stringify(data[i]);
-                if (array.indexOf(inputMail) > -1 && array.indexOf(inputNumber) > -1) {
-                    console.log(array)
-                    setShowComponent(true);
-                }
+        axios.get(url+"/existed", { params: { email: inputMail, password: inputNumber } }).then(({ data }) => {
+            console.log("1 " + data);
+            console.log("2 " + JSON.parse(sessionStorage.getItem('token')));
+
+            if (data === JSON.parse(sessionStorage.getItem('token'))) {
+                setShowComponent(true);
+            } else {
+                setShowComponent(false);
             }
         })
     }
