@@ -1,54 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from 'axios';
 
 const TableStyle = styled.input
+    `
+    padding: 0% 58% 1% 0%;
+    margin: 1% -10% 0% 0%;
 `
-padding: 1% 42% 1% 2%;
-margin: -1% 1% 1% 1%;
-`
-// `
-// justifyContent: left;
-// alignItems: left;
-// padding: 0.7em 25.1em;
-
-// display: flex;
-// color: white;
-// background: ${(props) => props.theme.subtitle};
-// `;
-
 
 export default (props) => {
-    const { task, index, isDisable, setIsDisable, tasks, setTasks, change, setChange} = props;
-    const [value, setValue] = useState(task.task);
+    const { index, task, arr, setArr } = props;
+    const [ch, setCh] = useState();
+    const handleChange = (e, task) => {
+        setCh(task.task);
 
-
-    
-    const handleChange = (e) => {
-        setValue(e.target.value);
-        setChange(value);
-        
-        // const array = [...tasks];
-        // task.task = value;
-        // array[index] = task;
-        // console.log(index + " In Write side")
-
-        // console.log(task)
-        // setTasks(array);
-        
-
-        // axios.put(`http://localhost:3001/list/${task._id}`,
-        // {
-        //     task: task.task,
-        // }).then(console.log(tasks[index].task + " updated in Monogo")).catch(err => console.log("ERROR!!! " + err))
+        task.task = e.target.value;
     }
 
     return (
         <TableStyle
             type="text"
-            value={value}
-            onChange={e => handleChange(e)}
-            disabled={!isDisable}
+            value={task.task}
+            onChange={e => handleChange(e, task)}
+            disabled={!arr[index]}
         />
     )
 }

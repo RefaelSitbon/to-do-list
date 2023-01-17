@@ -1,5 +1,5 @@
 {
-  "name": "to-do-list-components-bacend",
+  "name": "to-do-list-components-backend",
   "version": "1.0.0",
   "type": "module",
   "main": "connectTomongo.js",
@@ -11,7 +11,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios-jwt": "^3.0.0",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.20"
   }
 }

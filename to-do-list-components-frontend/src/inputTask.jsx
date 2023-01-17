@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components'
 import axios from 'axios';
 
@@ -25,29 +25,28 @@ const ButtonStyled = styled.button``
 // `;
 
 export default (props) => {
-    const { tasks, setTasks, input, setInput } = props;
+    const { tasks, setTasks, updateTasks, inputMail, inputNumber } = props;
+    const [input, setInput] = useState('');
 
     const handleClick = (e) => {
         if (input !== "") {
-            const id = tasks.length + 1;
 
             e.preventDefault();
 
-            axios.post('http://localhost:3001/list/',
+            axios.post('http://localhost:3002/register/exist',
                 {
-                    index: id,
                     task: input,
-                    completed: "false",
+                    email: inputMail,
                 }).then(res => {
                     console.log(res.status);
                 })
                 
-                console.log(input + "INPUUUUTTTT")
-                const temp_tasks = [...tasks, input];
-                setTasks(temp_tasks);
                 setInput('');
+                
+                updateTasks();
         }
     };
+    
     return (
         <div>
             <InputStyled className="input"
