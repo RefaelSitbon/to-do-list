@@ -21,6 +21,11 @@ box-sizing: border-box;
 border: 8px solid red;
 `
 
+const DivTable = styled.div
+    `
+    margin: 2% 5% 0% 5%;
+`
+
 const RegisterStyle = styled.h1
     `
 margin: 0% 17% 0% 28%;
@@ -48,7 +53,7 @@ padding: 1% 11% 1% 11%;
 export default () => {
     const [inputMail, setInputMail] = useState("");
     const [inputNumber, setInputNumber] = useState("");
-    const url = 'http://localhost:3002/register';
+    const url = 'http://10.1.0.52:3002/register';
 
     const [showComponent, setShowComponent] = useState(false);
 
@@ -64,15 +69,15 @@ export default () => {
                     axios.post(url, {
                         email: inputMail,
                         password: inputNumber,
-                    }).then(({data}) => {
+                    }).then(({ data }) => {
                         console.log("Hello new member");
                         sessionStorage.setItem('token', JSON.stringify(data));
                         console.log("After storage " + data)
                     }
                     );
-                }else if(data === "Success"){
+                } else if (data === "Success") {
                     console.log(data + " FROM FRONT");
-                }else{
+                } else {
                     console.log(data + " FROM FRONT");
                 }
             });
@@ -81,7 +86,7 @@ export default () => {
 
     const handleLogIn = () => {
         setShowComponent(false);
-        axios.get(url+"/existed", { params: { email: inputMail, password: inputNumber } }).then(({ data }) => {
+        axios.get(url + "/existed", { params: { email: inputMail, password: inputNumber } }).then(({ data }) => {
             console.log("1 " + data);
             console.log("2 " + JSON.parse(sessionStorage.getItem('token')));
 
@@ -118,7 +123,9 @@ export default () => {
                     <RegisterStyled onClick={() => handleLogIn()}>log in</RegisterStyled>
                 </div>
             </DivBox>
-            {showComponent ? <SecoundPage inputMail={inputMail} inputNumber={inputNumber} /> : null}
+            <DivTable>
+                {showComponent ? <SecoundPage inputMail={inputMail} inputNumber={inputNumber} /> : null}
+            </DivTable>
         </DivStyled>
     );
 }
