@@ -53,7 +53,7 @@ padding: 1% 11% 1% 11%;
 export default () => {
     const [inputMail, setInputMail] = useState("");
     const [inputNumber, setInputNumber] = useState("");
-    const url = 'http://10.1.0.52:3002/register';
+    const url = 'http://localhost:3002/register';
 
     const [showComponent, setShowComponent] = useState(false);
 
